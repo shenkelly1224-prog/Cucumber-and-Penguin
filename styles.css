@@ -1,0 +1,255 @@
+:root {
+  --bg-top: #a8e6ff;
+  --bg-bottom: #effcff;
+  --ice: #dbf4ff;
+  --ice-line: #87cfe6;
+  --deep: #123f59;
+  --accent: #ff7b54;
+  --accent-2: #ffe66d;
+  --panel: rgba(255, 255, 255, 0.82);
+  --shadow: rgba(18, 63, 89, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Noto Sans SC", sans-serif;
+  color: var(--deep);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.8), transparent 24%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.4;
+}
+
+.page-shell {
+  width: min(1200px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 28px 0 36px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+.hero-copy,
+.hero-card,
+.game-panel {
+  backdrop-filter: blur(10px);
+}
+
+.hero-copy,
+.hero-card,
+.game-panel {
+  background: var(--panel);
+  border: 3px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 18px 50px var(--shadow);
+}
+
+.hero-copy {
+  padding: 22px 24px;
+  border-radius: 28px;
+}
+
+.hero-card {
+  padding: 22px 24px;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -30% auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 230, 109, 0.65), transparent 68%);
+}
+
+.eyebrow,
+.card-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 10px 0 14px;
+  font-size: clamp(30px, 5vw, 56px);
+  line-height: 1.02;
+}
+
+.subtitle,
+.hero-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.hero-card p + p {
+  margin-top: 10px;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 32px;
+  padding: 3px 8px;
+  border-radius: 9px;
+  border: 2px solid var(--ice-line);
+  background: white;
+  box-shadow: inset 0 -2px 0 rgba(18, 63, 89, 0.12);
+  font-family: "Press Start 2P", cursive;
+  font-size: 10px;
+  text-align: center;
+}
+
+.game-panel {
+  border-radius: 28px;
+  padding: 18px;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.hud-item {
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(220, 245, 255, 0.95));
+  border: 2px solid rgba(135, 207, 230, 0.45);
+}
+
+.hud-item span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.hud-item strong {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.game-frame {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 3px solid rgba(135, 207, 230, 0.5);
+  background: linear-gradient(180deg, #7ad7ff, #dbf8ff 70%);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 41, 61, 0.24);
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-card {
+  width: min(460px, calc(100% - 28px));
+  padding: 24px;
+  border-radius: 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+  border: 3px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 16px 40px rgba(10, 40, 58, 0.16);
+}
+
+.overlay-card h2 {
+  margin: 0 0 12px;
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(18px, 3vw, 24px);
+  line-height: 1.6;
+}
+
+.overlay-card p {
+  margin: 0 0 18px;
+  line-height: 1.7;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
+  color: white;
+  background: linear-gradient(180deg, var(--accent), #ff5930);
+  box-shadow: 0 10px 18px rgba(255, 123, 84, 0.35);
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .page-shell {
+    width: min(100% - 14px, 1200px);
+    padding-top: 12px;
+  }
+
+  .hero-copy,
+  .hero-card,
+  .game-panel {
+    border-radius: 20px;
+  }
+
+  .hud {
+    grid-template-columns: 1fr;
+  }
+
+  .hud-item strong {
+    font-size: 11px;
+  }
+}
