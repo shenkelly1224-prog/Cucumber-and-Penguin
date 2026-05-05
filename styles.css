@@ -131,6 +131,52 @@ kbd {
   padding: 18px;
 }
 
+.touch-controls {
+  display: none;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.touch-pad {
+  display: flex;
+  gap: 12px;
+}
+
+.touch-pad-right {
+  margin-left: auto;
+}
+
+.touch-btn {
+  border: 0;
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
+  color: #0f3c57;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(201, 238, 249, 0.95));
+  border: 3px solid rgba(135, 207, 230, 0.55);
+  box-shadow: 0 12px 22px rgba(18, 63, 89, 0.15);
+}
+
+.touch-btn:active,
+.touch-btn.is-pressed {
+  transform: translateY(2px) scale(0.98);
+  background: linear-gradient(180deg, #ffe8a8, #ffd261);
+}
+
+.touch-jump {
+  width: 110px;
+  font-size: 14px;
+  color: white;
+  background: linear-gradient(180deg, var(--accent), #ff5930);
+}
+
 .hud {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -251,5 +297,20 @@ button:hover {
 
   .hud-item strong {
     font-size: 11px;
+  }
+
+  .touch-controls {
+    display: flex;
+  }
+
+  .touch-btn {
+    width: 68px;
+    height: 68px;
+    border-radius: 20px;
+  }
+
+  .touch-jump {
+    width: 104px;
+    font-size: 13px;
   }
 }
