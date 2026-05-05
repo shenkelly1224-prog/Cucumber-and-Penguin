@@ -17,8 +17,16 @@ const coinCountEl = document.getElementById("coinCount");
 const starStateEl = document.getElementById("starState");
 const livesCountEl = document.getElementById("livesCount");
 const statusTextEl = document.getElementById("statusText");
+const touchLeftButton = document.getElementById("touchLeft");
+const touchRightButton = document.getElementById("touchRight");
+const touchJumpButton = document.getElementById("touchJump");
 
 const keys = {};
+const touchState = {
+  left: false,
+  right: false,
+  jump: false,
+};
 let cameraX = 0;
 let animationId = 0;
 let lastTime = 0;
@@ -393,9 +401,9 @@ function resolveCollisions(axis) {
 }
 
 function updatePlayer() {
-  const moveLeft = keys.ArrowLeft || keys.KeyA;
-  const moveRight = keys.ArrowRight || keys.KeyD;
-  const jumpHeld = keys.ArrowUp || keys.KeyW || keys.Space;
+  const moveLeft = keys.ArrowLeft || keys.KeyA || touchState.left;
+  const moveRight = keys.ArrowRight || keys.KeyD || touchState.right;
+  const jumpHeld = keys.ArrowUp || keys.KeyW || keys.Space || touchState.jump;
   const jumpPressed = jumpHeld && !prevJumpHeld;
   const acceleration = player.onGround ? 0.76 : 0.5;
   const maxSpeed = player.big ? 6.8 : 6.2;
@@ -818,6 +826,43 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
   keys[event.code] = false;
 });
+
+function bindTouchControl(button, stateKey) {
+  const press = (event) => {
+    event.preventDefault();
+    touchState[stateKey] = true;
+    button.classList.add("is-pressed");
+    if (gameState !== "playing" && stateKey === "jump") {
+      startGame();
+    }
+  };
+
+  const release = (event) => {
+    event.preventDefault();
+    touchState[stateKey] = false;
+    button.classList.remove("is-pressed");
+  };
+
+  button.addEventListener("pointerdown", press);
+  button.addEventListener("pointerup", release);
+  button.addEventListener("pointerleave", release);
+  button.addEventListener("pointercancel", release);
+}
+
+function clearTouchControls() {
+  touchState.left = false;
+  touchState.right = false;
+  touchState.jump = false;
+  touchLeftButton.classList.remove("is-pressed");
+  touchRightButton.classList.remove("is-pressed");
+  touchJumpButton.classList.remove("is-pressed");
+}
+
+bindTouchControl(touchLeftButton, "left");
+bindTouchControl(touchRightButton, "right");
+bindTouchControl(touchJumpButton, "jump");
+window.addEventListener("pointerup", clearTouchControls);
+window.addEventListener("blur", clearTouchControls);
 
 startButton.addEventListener("click", startGame);
 
