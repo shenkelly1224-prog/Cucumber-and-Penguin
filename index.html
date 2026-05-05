@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LJX Xuexing Run</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">CJM style test build</p>
+        <h1>&#26446;&#20426;&#36713;&#19982;&#38634;&#26143;&#20914;&#21050;</h1>
+        <p class="subtitle">
+          &#19968;&#20010;&#23613;&#37327;&#36824;&#21407;&#32463;&#20856;&#27178;&#29256;&#36339;&#36335;&#20307;&#39564;&#30340;&#32593;&#39029;&#29256;&#23567;&#27979;&#35797;&#12290;&#20027;&#35282;&#26159;&#20225;&#40517;&#26446;&#20426;&#36713;&#65292;&#25932;&#20154;&#32479;&#19968;&#21483; MJX&#65292;&#25910;&#38598;&#29289;&#25442;&#25104;&#20102; &#129362;&#12290;
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="card-title">&#25805;&#20316;</div>
+        <p><kbd>A</kbd>/<kbd>D</kbd> &#25110; <kbd>&larr;</kbd>/<kbd>&rarr;</kbd> &#31227;&#21160;</p>
+        <p><kbd>W</kbd>/<kbd>Space</kbd>/<kbd>&uarr;</kbd> &#36339;&#36335;</p>
+        <p><kbd>R</kbd> &#37325;&#26032;&#24320;&#22987;</p>
+      </div>
+    </header>
+
+    <main class="game-panel">
+      <section class="hud" aria-label="&#28216;&#25103;&#29366;&#24577;">
+        <div class="hud-item"><span>&#20027;&#35282;</span><strong>&#26446;&#20426;&#36713;</strong></div>
+        <div class="hud-item"><span>&#129362;</span><strong id="coinCount">0</strong></div>
+        <div class="hud-item"><span>&#38634;&#26143;</span><strong id="starState">&#26410;&#33719;&#24471;</strong></div>
+        <div class="hud-item"><span>&#29983;&#21629;</span><strong id="livesCount">3</strong></div>
+        <div class="hud-item"><span>&#29366;&#24577;</span><strong id="statusText">&#20986;&#21457;</strong></div>
+      </section>
+
+      <section class="game-frame">
+        <canvas id="game" width="960" height="540" aria-label="&#26446;&#20426;&#36713;&#19982;&#38634;&#26143;&#20914;&#21050;&#28216;&#25103;&#30011;&#38754;"></canvas>
+        <div class="overlay" id="overlay">
+          <div class="overlay-card">
+            <h2 id="overlayTitle">&#25353;&#31354;&#26684;&#24320;&#22987;</h2>
+            <p id="overlayBody">&#39030;&#24320;&#20912;&#30742;&#12289;&#25910;&#38598; &#129362;&#12289;&#36393;&#25481; MJX&#65292;&#20914;&#21040;&#26071;&#26438;&#32456;&#28857;&#12290;</p>
+            <button id="startButton" type="button">&#24320;&#22987;&#28216;&#25103;</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./game.js"></script>
+</body>
+</html>
